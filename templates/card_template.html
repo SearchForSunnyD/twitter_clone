@@ -1,0 +1,19 @@
+{% macro render_card(post) %}
+<div class="card border-info p-0 m-2 col-3">
+	<div class="card-body">
+		<h3>{{post.title}}</h3>
+		<h4>{{post.content}}</h4>
+		<h5>{{post.username}}</h5>
+	</div>
+	<div class="card-footer">
+		{% if session['user'].username == post.username %}
+		<a href="/feedback/{{post.id}}/update" class="btn btn-primary mt-2"
+			>Update</a
+		>
+		<a href="/feedback/{{post.id}}/delete" class="btn btn-danger mt-2"
+			>Delete</a
+		>
+		{% endif %}
+	</div>
+</div>
+{% endmacro %}

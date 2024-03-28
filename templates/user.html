@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block title %}Secrets{% endblock %}{% import
+"card_template.html" as macros %} {% block content %}
+<div class="container border rounded p-2">
+	<h2>{{user.username}}</h2>
+	<h2>{{user.full_name}}</h2>
+	<h2>{{user.email}}</h2>
+	{% if session['user'].username == user.username %}
+	<a href="/users/{{session['user'].username}}/edit" class="btn btn-primary"
+		>Edit</a
+	>
+	<a href="/users/{{user.username}}/feedback/add" class="btn btn-secondary"
+		>Add Feedback</a
+	>
+	<a href="/users/{{user.username}}/delete" class="btn btn-danger">Delete</a>
+	{% endif %}
+</div>
+
+{% for post in feedback %} {{ macros.render_card(post) }} {% endfor %}
+{%endblock %}

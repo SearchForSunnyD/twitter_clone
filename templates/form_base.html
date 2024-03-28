@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="POST" class="border rounded p-4">
+        {{ form.hidden_tag() }}
+
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">{{ field.label }}</label>
+            <div class="col-sm-10">
+                {{ field(class_='form-control') }}
+                {% for error in field.errors %}
+                    <div class="badge badge-outline-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
